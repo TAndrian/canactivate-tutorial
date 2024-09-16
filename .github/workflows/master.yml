@@ -14,14 +14,29 @@ jobs:
         node-version:
           - 22.3.0
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
-      - run: |
-          - npm install
-          - npm ci
-      - run: npm run build --if-present
-      - run: npm test
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Install dependencies
+        run: |
+          rm -rf node_modules
+          npm install
+
+      - name: Run tests
+        run: npm run test -- --watch=false --no-progress --browsers=ChromeHeadless
