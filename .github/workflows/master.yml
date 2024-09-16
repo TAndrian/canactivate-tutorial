@@ -1,3 +1,4 @@
+---
 name: canactivate-tutorial CI
 on:
   push:
@@ -7,7 +8,8 @@ on:
     branches:
       - master
 jobs:
- build_project:
+  build_project:
+    name: build project
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -16,12 +18,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-
       - name: Cache Node.js modules
         uses: actions/cache@v2
         with:
@@ -29,14 +29,11 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
       - name: Clean npm cache
         run: npm cache clean --force
-
       - name: Install dependencies
         run: |
           rm -rf node_modules
           npm install
-
       - name: Run tests
         run: npm run test -- --watch=false --no-progress --browsers=ChromeHeadless
