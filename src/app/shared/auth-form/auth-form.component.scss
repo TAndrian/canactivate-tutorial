@@ -1,0 +1,14 @@
+@import "../../styles/mixins.scss";
+.auth-form {
+  max-width: 300px;
+  margin: auto;
+  
+  &__header {
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  &__content {
+    @include flex-col(center, center);
+  }
+
+}

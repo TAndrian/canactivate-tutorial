@@ -1,0 +1,84 @@
+<mat-card class="auth-form">
+  <mat-card-header class="auth-form__header">
+    <mat-card-title class="auth-form__title">
+      {{ title }}
+    </mat-card-title>
+  </mat-card-header>
+  <div class="auth-form__content" fxLayoutAlign="center center">
+    <mat-card-content fxLayout="column" fxLayoutAlign="center">
+      <form [formGroup]="form" (ngSubmit)="onsubmit()">
+        <mat-form-field
+          class="auth-form__input input__email"
+          appearance="fill"
+          fxLayoutAlign="center center"
+        >
+          <input
+            formControlName="email"
+            name="email"
+            id="email"
+            matInput
+            type="email"
+            placeholder="Enter your email"
+            required
+          />
+          <mat-error
+            class="auth-form__error"
+            *ngIf="form.get('email')?.invalid"
+          >
+            Please enter a valid email.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          class="auth-form__input input__password"
+          appearance="fill"
+        >
+          <input
+            formControlName="password"
+            matInput
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+          />
+          <mat-error
+            class="auth-form__error"
+            *ngIf="form.get('password')?.invalid"
+          >
+            Password is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          class="auth-form__input input__confirm-password"
+          appearance="fill"
+          *ngIf="isRegistrationMode"
+        >
+          <mat-label>Confirm password</mat-label>
+          <input
+            matInput
+            formControlName="confirmPassword"
+            type="password"
+            name="confirm-password"
+            id="confirm-password"
+            placeholder="Confirm your password"
+          />
+          <mat-error class="auth-form__error" *ngIf="doesPasswordsMatches">
+            Password must match.
+          </mat-error>
+        </mat-form-field>
+
+        <div
+          class="auth-form__submit"
+          fxLayout="row"
+          fxLayoutAlign="end center"
+        >
+          <button mat-raised-button type="submit">
+            {{ submitButtonLabel }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

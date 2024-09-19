@@ -1,10 +1,25 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-auth-form',
   standalone: true,
-  imports: [],
+  imports: [
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
   templateUrl: './auth-form.component.html',
   styleUrl: './auth-form.component.scss',
 })
@@ -41,5 +56,15 @@ export class AuthFormComponent {
       'confirmPassword',
       this.formBuilder.control('', Validators.required)
     );
+  }
+
+  /**
+   * Check if the user has confirmed his password.
+   * @returns True if passwords matches.
+   */
+  doesPasswordsMatches(): boolean {
+    const password = this.form.get('password')?.value;
+    const confirmPassword = this.form.get('confirmPassword')?.value;
+    return password === confirmPassword;
   }
 }
