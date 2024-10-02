@@ -1,1 +1,39 @@
-<p>shared-card works!</p>
+<div class="card">
+  <img [src]="femaleProfilePicture" alt="Person" class="card__image" />
+  <p class="card__name">{{ userFullname }}</p>
+  <span class="p-input-icon-right">
+    <i class="pi pi-user"></i>
+    <input
+      [disabled]="true"
+      [value]="userFirstname"
+      class="card__input"
+      type="text"
+      pInputText
+      formControlName="firstname"
+    />
+  </span>
+  <span class="p-input-icon-right">
+    <i class="pi pi-user"></i>
+    <input
+      [disabled]="true"
+      [value]="userLastname"
+      class="card__input"
+      type="text"
+      pInputText
+      formControlName="lastname"
+    />
+  </span>
+  <span class="p-input-icon-right">
+    <i class="pi pi-envelope"></i>
+    <input
+      [disabled]="true"
+      [value]="userEmail"
+      class="card__input"
+      type="text"
+      pInputText
+      formControlName="lastname"
+    />
+  </span>
+
+  <button class="btn draw-border">Edit</button>
+</div>

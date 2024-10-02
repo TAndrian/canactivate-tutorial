@@ -1,17 +1,14 @@
 <nav class="desktop-navigation">
-  <mat-toolbar class="desktop-navigation__toolbar" [color]="'primary'">
-    <span class="desktop-navigation__spacer"></span>
-
-    <app-avatar
-      class="desktop-navigation__avatar"
-      [fullname]="fullname"
-    ></app-avatar>
-    <button
-      mat-icon-button
-      class="desktop-navigation__button logout-icon"
-      aria-label="Login icon"
-    >
-      <mat-icon>logout</mat-icon>
-    </button>
-  </mat-toolbar>
+  <p-toolbar class="desktop-navigation__toolbar">
+    <span class="spacer"></span>
+    <ng-template pTemplate="end">
+      <div class="flex items-center gap-2">
+        <app-avatar [fullname]="fullname" />
+      </div>
+      <i
+        class="desktop-navigation__logout pi pi-sign-out"
+        severity="contrast"
+      ></i>
+    </ng-template>
+  </p-toolbar>
 </nav>

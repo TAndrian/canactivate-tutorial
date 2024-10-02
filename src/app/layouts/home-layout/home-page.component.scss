@@ -1,0 +1,6 @@
+@import "../../styles/mixins.scss";
+.home-page {
+  &__content {
+    @include flex-align(center, center);
+  }
+}

@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
 import { AvatarComponent } from '../../avatar/component/avatar.component';
 
 @Component({
   selector: 'app-desktop-navigation',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, AvatarComponent],
+  imports: [AvatarComponent, ToolbarModule, ButtonModule],
   templateUrl: './desktop-navigation.component.html',
   styleUrl: './desktop-navigation.component.scss',
 })

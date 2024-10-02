@@ -1,20 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { AvatarService } from '../service/avatar.service';
-import { MatIconModule } from '@angular/material/icon';
+import { AvatarModule } from 'primeng/avatar';
 
 @Component({
   selector: 'app-avatar',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [AvatarModule],
   templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.scss',
 })
 export class AvatarComponent {
   @Input() fullname: string = '';
-  initials: string = '';
-  constructor(private avatarService: AvatarService) {}
+  constructor(private readonly avatarService: AvatarService) {}
 
   ngOnInit(): void {
-    this.initials = this.avatarService.getInitials(this.fullname);
+    this.fullname = this.avatarService.getInitials(this.fullname);
   }
 }
