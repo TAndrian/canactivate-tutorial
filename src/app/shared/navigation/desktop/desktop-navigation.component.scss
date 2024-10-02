@@ -8,5 +8,9 @@
     font-size: larger;
     margin-left: 10px;
     margin-right: 20px;
+    &:hover {
+      cursor: pointer;
+      color: red;
+    }
   }
 }
