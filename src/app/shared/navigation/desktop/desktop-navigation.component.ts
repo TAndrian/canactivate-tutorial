@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { AvatarComponent } from '../../avatar/component/avatar.component';
@@ -11,5 +11,5 @@ import { AvatarComponent } from '../../avatar/component/avatar.component';
   styleUrl: './desktop-navigation.component.scss',
 })
 export class DesktopNavigationComponent {
-  fullname: string = 'John Connor';
+  @Input() fullname: string = '';
 }

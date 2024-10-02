@@ -1,6 +1,11 @@
 <div class="home-page">
-  <app-desktop-navigation />
+  <app-desktop-navigation [fullname]="fullname" />
   <div class="home-page__content">
-    <app-profile></app-profile>
+    <app-profile
+      [userFullname]="fullname"
+      [userEmail]="mockJohnConnor.email"
+      [userFirstname]="mockJohnConnor.firstname"
+      [userLastname]="mockJohnConnor.lastname"
+    ></app-profile>
   </div>
 </div>
