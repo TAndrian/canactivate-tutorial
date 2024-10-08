@@ -1,7 +1,6 @@
 import {
   ActivatedRouteSnapshot,
   CanActivateFn,
-  Router,
   RouterStateSnapshot,
 } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
@@ -12,7 +11,6 @@ export const authGuard: CanActivateFn = (
   state: RouterStateSnapshot
 ): Promise<boolean> => {
   const keycloak = inject(KeycloakService);
-  const router = inject(Router);
 
   return new Promise(async (resolve, reject) => {
     if (!(await keycloak.isLoggedIn())) {

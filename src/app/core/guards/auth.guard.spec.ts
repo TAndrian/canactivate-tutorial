@@ -26,6 +26,7 @@ describe('authGuardGuard', () => {
     });
 
     keycloak = TestBed.inject(KeycloakService);
+    spyOn(keycloak, 'login').and.callThrough;
   });
 
   it('should be created', () => {
@@ -34,13 +35,12 @@ describe('authGuardGuard', () => {
 
   it('should allow access to routes when user is authenticated', fakeAsync(async () => {
     // ARRANGE
-    spyOn(keycloak, 'isLoggedIn').and.returnValue(true);
+    spyOn(keycloak, 'isLoggedIn').and.returnValue(await Promise.resolve(true));
     tick();
 
     // ACT
-    const expected = await authGuard(
-      new ActivatedRouteSnapshot(),
-      {} as RouterStateSnapshot
+    const expected = await TestBed.runInInjectionContext(() =>
+      authGuard(new ActivatedRouteSnapshot(), {} as RouterStateSnapshot)
     );
 
     // ASSERT
@@ -49,13 +49,12 @@ describe('authGuardGuard', () => {
 
   it('should deny access and redirect to login route when user is not authenticated', fakeAsync(async () => {
     // ARRANGE
-    spyOn(keycloak, 'isLoggedIn').and.returnValue(false);
+    spyOn(keycloak, 'isLoggedIn').and.returnValue(await Promise.resolve(false));
     tick();
 
     // ACT
-    const expected = await authGuard(
-      new ActivatedRouteSnapshot(),
-      {} as RouterStateSnapshot
+    const expected = await TestBed.runInInjectionContext(() =>
+      authGuard(new ActivatedRouteSnapshot(), {} as RouterStateSnapshot)
     );
 
     // ASSERT
