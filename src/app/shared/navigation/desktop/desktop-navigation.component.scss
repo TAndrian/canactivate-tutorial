@@ -1,0 +1,16 @@
+@import "../../../styles/mixins.scss";
+.desktop-navigation {
+  padding-bottom: 10px;
+  &__avatar {
+    padding: 5px;
+  }
+  &__logout {
+    font-size: larger;
+    margin-left: 10px;
+    margin-right: 20px;
+    &:hover {
+      cursor: pointer;
+      color: red;
+    }
+  }
+}
